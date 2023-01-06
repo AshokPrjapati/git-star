@@ -9,10 +9,10 @@ function AllRoutes() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<AllLang />} />
-        <Route path="/html" element={<Html />} />
-        <Route path="/css" element={<Css />} />
-        <Route path="/javaScript" element={<Javascript />} />
+        <Route path="/gitstar/" element={<AllLang />} />
+        <Route path="/gitstar/html" element={<Html />} />
+        <Route path="/gitstar/css" element={<Css />} />
+        <Route path="/gitstar/javaScript" element={<Javascript />} />
       </Routes>
     </div>
   );

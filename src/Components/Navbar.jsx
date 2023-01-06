@@ -4,10 +4,10 @@ import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 
 let links = [
-  { path: "/", text: "All" },
-  { path: "/html", text: "HTML" },
-  { path: "/css", text: "CSS" },
-  { path: "/javascript", text: "JavaScript" },
+  { path: "/gitstar/", text: "All" },
+  { path: "/gitstar/html", text: "HTML" },
+  { path: "/gitstar/css", text: "CSS" },
+  { path: "/gitstar/javascript", text: "JavaScript" },
 ];
 
 const Navbar = () => {
