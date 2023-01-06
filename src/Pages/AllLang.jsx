@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  SkeletonCircle,
+  SkeletonText,
+} from "@chakra-ui/react";
 import axios from "axios";
 import LanCard from "../Components/Card";
 
 function AllLang() {
   let [allData, setAllData] = useState([]);
+  let [loading, setLoading] = useState(false);
+
+  let ld = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const fetchData = async () => {
-    let res = await axios.get(
-      `https://api.github.com/search/repositories?q=stars:%3E1+language:all`
-    );
-    let data = await res.data.items;
-    setAllData(data);
+    setLoading(true);
+    try {
+      let res = await axios.get(
+        `https://api.github.com/search/repositories?q=stars:%3E1+language:all`
+      );
+      let data = await res.data.items;
+      setLoading(false);
+      setAllData(data);
+    } catch (e) {
+      setLoading(false);
+      alert("something went wrong");
+    }
   };
 
   useEffect(() => {
@@ -29,9 +45,19 @@ function AllLang() {
         }}
         gap={"20px 20px"}
       >
-        {allData.map((d) => (
-          <LanCard key={d.id} {...d} />
-        ))}
+        {loading
+          ? ld.map(() => (
+              <Box bg={"#010101"} padding="6" boxShadow="lg">
+                <SkeletonCircle size="10" />
+                <SkeletonText
+                  mt="4"
+                  noOfLines={4}
+                  spacing="4"
+                  skeletonHeight="2"
+                />
+              </Box>
+            ))
+          : allData.map((d) => <LanCard key={d.id} {...d} />)}
       </Grid>
     </Container>
   );
